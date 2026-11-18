@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f1f3f5">
+    <meta name="description" content="Sample vulnerability assessment report based on the Northstar activity findings.">
+    <title>Report | Behind the Firewall</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">BF</span> Behind the Firewall</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Student activity</a>
+        <a href="demo-terminal.html">Terminal</a>
+        <a href="demo-siem.html">SIEM</a>
+        <a class="active" href="report.html" aria-current="page">Report</a>
+      </nav>
+    </header>
+
+    <main class="demo-main report-main">
+      <div class="demo-heading">
+        <div>
+          <h1>Vulnerability assessment report</h1>
+          <p>Northstar · Sample based on findings A–E</p>
+        </div>
+        <span class="sample-badge">SAMPLE REPORT</span>
+      </div>
+
+      <section class="report-meta" aria-label="Report details">
+        <div><span>ASSESSMENT</span><strong>Vulnerability assessment</strong></div>
+        <div><span>SCOPE</span><strong>Five activity findings (A–E)</strong></div>
+        <div><span>STATUS</span><strong>Example for learning</strong></div>
+      </section>
+
+      <section class="report-section">
+        <h2>Executive summary</h2>
+        <div class="report-section-content">
+          <p>The sample findings affect an internet-facing customer portal, an internet-reachable management page, an isolated test server, an internal printer, and a public web application. Prioritize remediation based on exposure and known exploitation—not severity scores alone.</p>
+          <p><strong>Suggested order:</strong> B, C, A, D, then E. Finding B is being exploited in the wild; C exposes a management page that still uses a default password. A has a very high technical score, but the stated isolation and lack of data lower its immediate business priority.</p>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <h2>Findings at a glance</h2>
+        <div class="table-wrap">
+          <table class="log-table report-table">
+            <thead>
+              <tr><th>ID</th><th>Finding</th><th>Priority</th><th>Severity / context</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>B</td><td>Authentication bypass on customer portal</td><td class="priority-high">1 · Urgent</td><td>CVSS 6.5 · Internet-facing; exploitation observed</td></tr>
+              <tr><td>C</td><td>Default administrator password</td><td class="priority-high">2 · High</td><td>Not scored · Management page reachable from internet</td></tr>
+              <tr><td>A</td><td>Remote code execution on test server</td><td>3 · Critical technical severity</td><td>CVSS 9.8 · Isolated; no data stated</td></tr>
+              <tr><td>D</td><td>Outdated TLS on internal printer</td><td>4 · Moderate</td><td>CVSS 5.3 · Internal network</td></tr>
+              <tr><td>E</td><td>Detailed web error messages</td><td>5 · Low</td><td>CVSS 3.1 · Public application</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <h2>Finding details</h2>
+        <div class="report-finding-list">
+          <article class="report-finding">
+            <div class="report-finding-heading"><h3>B · Authentication bypass</h3><span class="priority-high">Priority 1</span></div>
+            <p class="report-context">The customer portal is internet-facing, and exploitation of this issue has been observed. The activity lists CVSS 6.5.</p>
+            <div class="report-recommendation"><strong>Recommended action</strong><span>Apply the vendor's fix or mitigation, review relevant authentication logs for suspicious activity, and restrict exposure until remediation is verified.</span></div>
+            <p class="report-retest"><strong>Retest:</strong> Confirm the affected login path no longer bypasses authentication within the approved scope.</p>
+          </article>
+
+          <article class="report-finding">
+            <div class="report-finding-heading"><h3>C · Default administrator password</h3><span class="priority-high">Priority 2</span></div>
+            <p class="report-context">An internet-reachable management page still uses a default administrator password. No CVSS score is provided.</p>
+            <div class="report-recommendation"><strong>Recommended action</strong><span>Replace the default credential with a unique secret, limit management access to authorized networks, and review access logs.</span></div>
+            <p class="report-retest"><strong>Retest:</strong> Verify the default credential no longer works and management access is appropriately restricted.</p>
+          </article>
+
+          <article class="report-finding">
+            <div class="report-finding-heading"><h3>A · Remote code execution</h3><span>Priority 3</span></div>
+            <p class="report-context">The test server has a very high technical score (CVSS 9.8), but is described as isolated and holding no data.</p>
+            <div class="report-recommendation"><strong>Recommended action</strong><span>Apply the relevant security update, preserve the test network isolation, and reassess if the system's exposure or role changes.</span></div>
+            <p class="report-retest"><strong>Retest:</strong> Confirm the weakness is resolved and that isolation controls remain in place.</p>
+          </article>
+
+          <article class="report-finding">
+            <div class="report-finding-heading"><h3>D · Outdated TLS</h3><span>Priority 4</span></div>
+            <p class="report-context">An internal printer uses an outdated TLS configuration. The activity lists CVSS 5.3.</p>
+            <div class="report-recommendation"><strong>Recommended action</strong><span>Configure supported TLS versions and cipher suites, checking printer compatibility before deployment.</span></div>
+            <p class="report-retest"><strong>Retest:</strong> Verify that obsolete TLS options are disabled and required printing services continue to work.</p>
+          </article>
+
+          <article class="report-finding">
+            <div class="report-finding-heading"><h3>E · Detailed error messages</h3><span>Priority 5</span></div>
+            <p class="report-context">A public web application returns detailed technical errors. The activity lists CVSS 3.1.</p>
+            <div class="report-recommendation"><strong>Recommended action</strong><span>Show users a generic error, keep diagnostic details in access-controlled server logs, and avoid returning secrets or internal implementation data.</span></div>
+            <p class="report-retest"><strong>Retest:</strong> Confirm public responses are sanitized and useful diagnostic information remains available to authorized maintainers.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <h2>Scope, evidence, and limitations</h2>
+        <div class="report-section-content">
+          <p>This is a fictional learning sample, not the result of a real scan. It uses only the five findings described in the student activity. Asset identifiers, affected versions, evidence, dates, owners, and business impact details were not supplied.</p>
+          <p>Before using a real report, confirm each finding within written authorization, attach appropriate evidence, identify an owner, agree on remediation dates, and record retest results.</p>
+        </div>
+      </section>
+    </main>
+
+  </body>
+</html>

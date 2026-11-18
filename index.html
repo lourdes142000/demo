@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f1f3f5">
+    <meta name="description" content="An interactive reinforcement activity on vulnerability assessment, risk, reporting, and defense.">
+    <title>Student Activity | Behind the Firewall</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="active" href="index.html" aria-current="page">Student activity</a>
+        <a href="demo-terminal.html">Terminal</a>
+        <a href="demo-siem.html">SIEM</a>
+        <a href="report.html">Report</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <div class="page-heading">
+        <h1>Student activity</h1>
+      </div>
+
+      <section class="activity-panel">
+        <div class="activity-toolbar">
+          <strong>Northstar Portal</strong>
+          <span id="progress-count" class="progress-count">0 / 6 complete</span>
+        </div>
+        <ol id="checkpoint-list" class="checkpoint-list" aria-label="Activity checkpoints"></ol>
+        <div id="mission-content" class="mission-content" aria-live="polite"></div>
+      </section>
+    </main>
+  </body>
+</html>

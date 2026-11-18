@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f1f3f5">
+    <meta name="description" content="SIEM dashboard for the Behind the Firewall lab.">
+    <title>SIEM | Behind the Firewall</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="demo-events.js" defer></script>
+    <script src="demo-siem.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">BF</span> Behind the Firewall</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Student activity</a>
+        <a href="demo-terminal.html">Terminal</a>
+        <a class="active" href="demo-siem.html" aria-current="page">SIEM</a>
+        <a href="report.html">Report</a>
+      </nav>
+    </header>
+
+    <main class="demo-main">
+      <div class="demo-heading">
+        <div>
+          <h1>SIEM</h1>
+        </div>
+      </div>
+
+      <div class="demo-toolbar">
+        <button id="clear-events" class="button button-secondary" type="button">Clear</button>
+        <span id="siem-error" class="demo-status" role="status"></span>
+      </div>
+
+      <section class="alert-chart-panel" aria-label="Alert count over time">
+        <svg id="alert-chart" viewBox="0 0 960 250" role="img" aria-label="Alert count over time"></svg>
+      </section>
+
+      <div id="detection-alert" class="alert-strip is-clear" role="status"></div>
+
+      <section class="log-section">
+        <div class="log-section-heading">
+          <span>System events</span>
+          <span id="event-count" class="demo-status">0 events</span>
+        </div>
+        <div class="table-wrap">
+          <table class="log-table">
+            <thead>
+              <tr><th>Time</th><th>Event</th><th>Source</th><th>Destination</th><th>Result</th><th></th></tr>
+            </thead>
+            <tbody id="event-rows">
+              <tr><td class="empty-state" colspan="6">No events</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+  </body>
+</html>
